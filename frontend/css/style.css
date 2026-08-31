@@ -1,0 +1,343 @@
+:root {
+  --oliva: #3b4a2b;
+  --oliva-claro: #5c6e43;
+  --areia: #e7e3d7;
+  --ficha: #fbfaf6;
+  --carvao: #1b1e17;
+  --grafite: #5a5f52;
+  --dourado: #a8842c;
+  --alerta: #96302e;
+  --linha: #cfc9b8;
+
+  --mono: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  --texto: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--areia);
+  color: var(--carvao);
+  font-family: var(--texto);
+  line-height: 1.55;
+}
+
+/* Faixa de comando: cabecalho fixo com a identificacao da unidade. */
+.faixa {
+  background-color: var(--oliva);
+  border-bottom: 3px solid var(--dourado);
+  color: var(--ficha);
+}
+
+.faixa-interna {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 16px 24px;
+}
+
+.marca {
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.marca::before {
+  color: var(--dourado);
+  content: "\258C\258C";
+  margin-right: 8px;
+}
+
+.unidade {
+  border-left: 1px solid var(--oliva-claro);
+  color: var(--linha);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  padding-left: 28px;
+  text-transform: uppercase;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.menu a {
+  border-bottom: 2px solid transparent;
+  color: var(--linha);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  padding-bottom: 3px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu a:hover {
+  color: var(--ficha);
+}
+
+.menu a.ativo {
+  border-bottom-color: var(--dourado);
+  color: var(--ficha);
+}
+
+main {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 36px 24px 64px;
+}
+
+.rotulo {
+  color: var(--grafite);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+}
+
+.chamada {
+  color: var(--grafite);
+  margin: 0 0 32px;
+  max-width: 58ch;
+}
+
+/* Tabela como quadro de servico: cada linha e uma ficha com aba lateral. */
+.quadro {
+  border-collapse: separate;
+  border-spacing: 0 6px;
+  width: 100%;
+}
+
+.quadro th {
+  color: var(--grafite);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  padding: 0 16px 8px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.quadro td {
+  background-color: var(--ficha);
+  border-bottom: 1px solid var(--linha);
+  border-top: 1px solid var(--linha);
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+.quadro td:first-child {
+  border-left: 4px solid var(--grafite);
+}
+
+.quadro td:last-child {
+  border-right: 1px solid var(--linha);
+}
+
+.quadro tr[data-circulo="oficial"] td:first-child {
+  border-left-color: var(--dourado);
+}
+
+.quadro tr[data-circulo="sargento"] td:first-child {
+  border-left-color: var(--oliva-claro);
+}
+
+.posto {
+  color: var(--grafite);
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  min-width: 62px;
+}
+
+.nome {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.data {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+.subunidade {
+  color: var(--grafite);
+  font-size: 0.9rem;
+}
+
+/* Indicadores do dashboard. */
+.cartoes {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.cartao {
+  background-color: var(--ficha);
+  border: 1px solid var(--linha);
+  border-left: 4px solid var(--oliva-claro);
+  padding: 22px 24px 24px;
+}
+
+.cartao-alerta {
+  border-left-color: var(--alerta);
+}
+
+.cartao h2 {
+  color: var(--grafite);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+.numero {
+  display: block;
+  font-family: var(--mono);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.cartao-alerta .numero {
+  color: var(--alerta);
+}
+
+.nota {
+  color: var(--grafite);
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+/* Estados de carregamento, erro e configuracao pendente. */
+.aviso {
+  background-color: var(--ficha);
+  border: 1px dashed var(--linha);
+  border-left: 4px solid var(--dourado);
+  color: var(--grafite);
+  padding: 20px 24px;
+}
+
+.aviso strong {
+  color: var(--carvao);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.aviso code {
+  background-color: var(--areia);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 1px 5px;
+}
+
+/* Pagina inicial. */
+.destinos {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.destino {
+  background-color: var(--ficha);
+  border: 1px solid var(--linha);
+  border-left: 4px solid var(--oliva);
+  color: inherit;
+  display: block;
+  padding: 24px;
+  text-decoration: none;
+  transition: border-left-color 120ms ease;
+}
+
+.destino:hover {
+  border-left-color: var(--dourado);
+}
+
+.destino h2 {
+  font-size: 1.15rem;
+  margin: 0 0 6px;
+}
+
+.destino p {
+  color: var(--grafite);
+  margin: 0;
+}
+
+.requisito {
+  color: var(--dourado);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+}
+
+a:focus-visible,
+.destino:focus-visible {
+  outline: 2px solid var(--dourado);
+  outline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .unidade {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .menu {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .quadro thead {
+    display: none;
+  }
+
+  .quadro tr {
+    background-color: var(--ficha);
+    border: 1px solid var(--linha);
+    border-left: 4px solid var(--grafite);
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
+
+  .quadro tr[data-circulo="oficial"] {
+    border-left-color: var(--dourado);
+  }
+
+  .quadro tr[data-circulo="sargento"] {
+    border-left-color: var(--oliva-claro);
+  }
+
+  .quadro td,
+  .quadro td:first-child,
+  .quadro td:last-child {
+    border: 0;
+    display: block;
+    padding: 4px 16px;
+  }
+}

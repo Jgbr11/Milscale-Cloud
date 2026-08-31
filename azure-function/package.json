@@ -1,0 +1,12 @@
+{
+  "name": "milscale-azure-function",
+  "version": "1.0.0",
+  "description": "Azure Function HTTP que devolve a escala de servico mockada do MilScale.",
+  "main": "src/functions/*.js",
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.0"
+  }
+}
