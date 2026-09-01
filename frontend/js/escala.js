@@ -1,5 +1,5 @@
 // Troque pela URL da Azure Function publicada depois do deploy.
-const URL_FUNCTION_ESCALA = 'http://localhost:7071/api/GetEscala';
+const URL_FUNCTION_ESCALA = 'https://func-milscale-1234.azurewebsites.net/api/GetEscala';
 
 const COLUNAS = ['Militar', 'Função de serviço', 'Data', 'Subunidade'];
 

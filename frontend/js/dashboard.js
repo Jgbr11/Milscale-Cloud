@@ -1,5 +1,5 @@
 // Cole aqui a URL do endpoint mock criado no Apidog.
-const APIDOG_MOCK_URL = 'http://127.0.0.1:3658/m1/1370173-1374855-default/indicadores';
+const APIDOG_MOCK_URL = 'https://mock.apidog.com/m1/1370173-1374855-default/indicadores';
 
 const conteudo = document.getElementById('conteudo');
 const periodo = document.getElementById('periodo');

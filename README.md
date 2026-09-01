@@ -8,11 +8,10 @@ uma Azure Function HTTP para a escala e um endpoint do Apidog para os indicadore
 
 | Recurso | URL |
 | --- | --- |
-| Site publicado (Azure Static Web Apps) | `[URL_AZURE_STATIC_WEB_APPS]` |
+| Site publicado (Azure Static Web Apps) | https://agreeable-cliff-08658490f.3.azurestaticapps.net |
 | Azure Function (local) | `http://localhost:7071/api/GetEscala` |
-| Azure Function (publicada) | `https://[NOME_DA_FUNCTION_APP].azurewebsites.net/api/GetEscala` |
-| Mock de indicadores — Apidog local | `http://127.0.0.1:3658/m1/1370173-1374855-default/indicadores` |
-| Mock de indicadores — Apidog Cloud Mock | `[URL_APIDOG]` |
+| Azure Function (publicada) | https://func-milscale-1234.azurewebsites.net/api/GetEscala |
+| Mock de indicadores (Apidog Cloud Mock) | https://mock.apidog.com/m1/1370173-1374855-default/indicadores |
 
 ## Como rodar localmente
 
@@ -41,15 +40,18 @@ etapa de instalação antes do primeiro `func start`.
    até **Escala**. O CORS liberado em `azure-function/local.settings.json`
    permite que a página converse com a função rodando na sua máquina.
 
-3. Para a tela **Indicadores**, deixe o **Apidog aberto** com o mock local
-   ativo. A constante `APIDOG_MOCK_URL`, no topo de `frontend/js/dashboard.js`,
-   já aponta para ele. Se a constante voltar ao valor `COLOQUE_AQUI`, a tela
-   exibe um aviso explicando o que falta configurar.
+3. A tela **Indicadores** consome o Cloud Mock do Apidog, que é público —
+   não precisa do Apidog aberto. A constante `APIDOG_MOCK_URL`, no topo de
+   `frontend/js/dashboard.js`, já aponta para ele. Se a constante voltar ao
+   valor `COLOQUE_AQUI`, a tela exibe um aviso explicando o que falta.
 
    No Apidog, o endpoint é `GET /indicadores`, com o JSON cadastrado em
    **Exemplo** e a prioridade de mock em **Exemplo de resposta primeiro**
    (Configurações de Mock) — sem essa prioridade o mock devolve `{}`, porque o
    schema do endpoint está vazio de propósito.
+
+   Como a constante aponta para o **Cloud Mock**, a tela funciona mesmo com o
+   Apidog fechado.
 
 ## Formato esperado do mock do Apidog
 
@@ -71,17 +73,18 @@ A porcentagem de cobertura mostrada no card é calculada no frontend a partir de
 
 ## Deploy
 
-> **Atenção antes do deploy:** a URL de mock local (`127.0.0.1:3658`) só
-> funciona nesta máquina, com o Apidog aberto. O site publicado não alcança
-> esse endereço. Antes de publicar, ative o **Cloud Mock** no Apidog e troque
-> `APIDOG_MOCK_URL` pela URL `https://mock.apidog.com/...`.
+Tudo já está publicado. O que foi feito, para referência:
 
-- **Frontend:** Azure Static Web Apps, apontando a pasta do app para `frontend`.
-  Depois do deploy, troque a URL da função em `frontend/js/escala.js` (constante
-  `URL_FUNCTION_ESCALA`) pela URL publicada e habilite o CORS da Function App
-  para o domínio do Static Web App.
-- **Backend:** publique a pasta `azure-function` na Function App
-  (`func azure functionapp publish [NOME_DA_FUNCTION_APP]`).
+- **Frontend:** Azure Static Web App `swa-milscale`, com o app apontando para a
+  pasta `frontend`. Cada `push` no branch `main` republica o site automaticamente.
+- **Backend:** Function App `func-milscale-1234`, no grupo `rg-milscale`, região
+  `eastus`, publicada com `func azure functionapp publish func-milscale-1234`.
+- **CORS:** a Function App autoriza apenas a origem do Static Web App
+  (`az functionapp cors add`). Chamadas de outros domínios não recebem o
+  cabeçalho de autorização e são bloqueadas pelo navegador.
+
+Para não consumir crédito depois da apresentação, apague o grupo inteiro:
+`az group delete --name rg-milscale --yes`
 
 ## Estrutura
 
