@@ -1,8 +1,10 @@
 # MilScale — MVP
 
 MVP do MilScale, sistema de gestão de escalas de serviço militar de um batalhão.
-O frontend é HTML, CSS e JavaScript puro Os dados vêm de mocks —
-uma Azure Function HTTP para a escala e um endpoint do Apidog para os indicadores.
+O frontend é HTML, CSS e JavaScript puro e demonstra dois requisitos: a consulta
+da escala publicada (RF11) e o dashboard de indicadores operacionais (RF14). Os
+dados vêm de mocks — uma Azure Function HTTP para a escala e um endpoint do
+Apidog para os indicadores.
 
 ## URLs
 
@@ -83,8 +85,13 @@ Tudo já está publicado. O que foi feito, para referência:
   (`az functionapp cors add`). Chamadas de outros domínios não recebem o
   cabeçalho de autorização e são bloqueadas pelo navegador.
 
-Para não consumir crédito depois da apresentação, apague o grupo inteiro:
-`az group delete --name rg-milscale --yes`
+Para não consumir crédito depois da apresentação, apague os dois grupos de
+recursos — o Static Web App foi criado em um grupo próprio:
+
+```
+az group delete --name rg-milscale --yes
+az group delete --name swa-milscale_group --yes
+```
 
 ## Estrutura
 
