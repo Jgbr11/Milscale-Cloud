@@ -1,6 +1,6 @@
 # MilScale — MVP
 
-MVP acadêmico do MilScale, sistema de gestão de escalas de serviço militar de um batalhão.
+MVP do MilScale, sistema de gestão de escalas de serviço militar de um batalhão.
 O frontend é HTML, CSS e JavaScript puro Os dados vêm de mocks —
 uma Azure Function HTTP para a escala e um endpoint do Apidog para os indicadores.
 
