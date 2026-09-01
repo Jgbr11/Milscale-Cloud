@@ -1,9 +1,8 @@
 # MilScale — MVP
 
 MVP do MilScale, sistema de gestão de escalas de serviço militar de um batalhão.
-O frontend é HTML, CSS e JavaScript puro e demonstra dois requisitos: a consulta
-da escala publicada (RF11) e o dashboard de indicadores operacionais (RF14). Os
-dados vêm de mocks — uma Azure Function HTTP para a escala e um endpoint do
+O frontend é HTML, CSS e JavaScript puro.
+Osdados vêm de mocks — uma Azure Function HTTP para a escala e um endpoint do
 Apidog para os indicadores.
 
 ## URLs
