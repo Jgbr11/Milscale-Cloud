@@ -1,6 +1,3 @@
-// Troque pela URL da Azure Function publicada depois do deploy.
-const URL_FUNCTION_ESCALA = 'https://func-milscale-1234.azurewebsites.net/api/GetEscala';
-
 const COLUNAS = ['Militar', 'Função de serviço', 'Data', 'Subunidade'];
 
 const conteudo = document.getElementById('conteudo');
@@ -62,6 +59,15 @@ function mostrarAviso(titulo, detalhe) {
 }
 
 function mostrarEscala(dados) {
+  if (dados.escala.length === 0) {
+    periodo.textContent = `${dados.unidade} · ${dados.periodo}`;
+    mostrarAviso(
+      'Nenhum serviço publicado.',
+      'O banco está vazio. Cadastre serviços na tela Gerenciar, ou rode a carga inicial com "node scripts/popularBanco.js" na pasta azure-function.'
+    );
+    return;
+  }
+
   const tabela = document.createElement('table');
   tabela.className = 'quadro';
   tabela.appendChild(montarCabecalho());
@@ -77,8 +83,9 @@ function mostrarEscala(dados) {
 }
 
 async function carregarEscala() {
+  const url = `${URL_API}/PesquisarEscala`;
   try {
-    const resposta = await fetch(URL_FUNCTION_ESCALA);
+    const resposta = await fetch(url);
     if (!resposta.ok) {
       throw new Error(`HTTP ${resposta.status}`);
     }
@@ -87,7 +94,7 @@ async function carregarEscala() {
     periodo.textContent = 'Não foi possível carregar a escala.';
     mostrarAviso(
       'A Azure Function não respondeu.',
-      `Suba a função com "func start" na pasta azure-function e confirme que ${URL_FUNCTION_ESCALA} está no ar. Detalhe: ${erro.message}`
+      `Confirme que ${url} está no ar e que a MONGODB_URI está configurada. Detalhe: ${erro.message}`
     );
   }
 }

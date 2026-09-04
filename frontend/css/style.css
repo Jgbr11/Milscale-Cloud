@@ -341,3 +341,188 @@ a:focus-visible,
     padding: 4px 16px;
   }
 }
+
+/* Formulario de cadastro e edicao da escala. */
+.formulario {
+  background-color: var(--ficha);
+  border: 1px solid var(--linha);
+  border-left: 4px solid var(--oliva);
+  margin-bottom: 24px;
+  padding: 24px;
+}
+
+.formulario h2 {
+  color: var(--grafite);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.campos {
+  display: grid;
+  gap: 14px 18px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo label {
+  color: var(--grafite);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.campo input,
+.campo select,
+.busca input {
+  background-color: var(--areia);
+  border: 1px solid var(--linha);
+  color: var(--carvao);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 9px 11px;
+  width: 100%;
+}
+
+.campo input:focus,
+.campo select:focus,
+.busca input:focus {
+  border-color: var(--dourado);
+  outline: 2px solid var(--dourado);
+  outline-offset: 1px;
+}
+
+.acoes-formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Botoes: solido para a acao principal, contorno para a secundaria. */
+.botao {
+  background-color: var(--oliva);
+  border: 1px solid var(--oliva);
+  color: var(--ficha);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: background-color 120ms ease;
+}
+
+.botao:hover {
+  background-color: var(--oliva-claro);
+}
+
+.botao:disabled {
+  cursor: progress;
+  opacity: 0.55;
+}
+
+.botao-secundario {
+  background-color: transparent;
+  border-color: var(--linha);
+  color: var(--grafite);
+}
+
+.botao-secundario:hover {
+  background-color: var(--areia);
+  border-color: var(--grafite);
+}
+
+.botao:focus-visible,
+.botao-linha:focus-visible {
+  outline: 2px solid var(--dourado);
+  outline-offset: 2px;
+}
+
+/* Busca acima da tabela. */
+.busca {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.busca input {
+  flex: 1 1 280px;
+  width: auto;
+}
+
+/* Resultado da ultima operacao. */
+.feedback {
+  border-left: 4px solid var(--oliva-claro);
+  font-size: 0.92rem;
+  margin: 0 0 18px;
+  padding: 12px 16px;
+}
+
+.feedback-ok {
+  background-color: var(--ficha);
+  color: var(--carvao);
+}
+
+.feedback-erro {
+  background-color: var(--ficha);
+  border-left-color: var(--alerta);
+  color: var(--alerta);
+}
+
+/* Acoes por linha da tabela. */
+.acoes {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.botao-linha {
+  background-color: transparent;
+  border: 1px solid var(--linha);
+  color: var(--grafite);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  margin-left: 6px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+}
+
+.botao-linha:hover {
+  border-color: var(--oliva);
+  color: var(--oliva);
+}
+
+.botao-linha-alerta:hover {
+  border-color: var(--alerta);
+  color: var(--alerta);
+}
+
+.chamada code {
+  background-color: var(--ficha);
+  border: 1px solid var(--linha);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 1px 5px;
+}
+
+@media (max-width: 620px) {
+  .acoes {
+    text-align: left;
+  }
+
+  .botao-linha {
+    margin: 6px 6px 0 0;
+  }
+}

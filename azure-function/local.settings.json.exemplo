@@ -2,7 +2,9 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": ""
+    "AzureWebJobsStorage": "",
+    "MONGODB_URI": "",
+    "MONGODB_DB": "milscale"
   },
   "Host": {
     "CORS": "*"
