@@ -99,21 +99,21 @@ cadastrado na tela Gerenciar aparece na consulta da escala publicada.
 ## 4. Teste automatizado das quatro operações
 
 O script `azure-function/scripts/testar-crud.ps1` executa as quatro Functions em
-sequência contra o banco real. Saída obtida em 03/09/2026, com as Functions
-rodando localmente e gravando no cluster do Atlas:
+sequência contra o banco real. Saída obtida em 03/09/2026 contra as Functions **publicadas no Azure**,
+gravando no cluster do Atlas (rode com `-Base "https://func-milscale-1234.azurewebsites.net/api"`):
 
 ```
-=== 1/4  INSERIR  ->  POST /api/InserirEscala ===
+=== 1/4  INSERIR  ->  POST https://func-milscale-1234.azurewebsites.net/api/InserirEscala ===
 { "mensagem": "Serviço incluído na escala.",
-  "servico": { "id": "6a9a0d44296f28fddd3728fb", "posto": "1º TEN", "nome": "TESTE", ... } }
+  "servico": { "id": "6a9a1047bb5222b3bbed8252", "posto": "1º TEN", "nome": "TESTE", ... } }
 
 === 2/4  PESQUISAR  ->  GET /api/PesquisarEscala?termo=TESTE ===
 1 serviço(s) encontrado(s).
 
-=== 3/4  ALTERAR  ->  PUT /api/AlterarEscala?id=6a9a0d44296f28fddd3728fb ===
+=== 3/4  ALTERAR  ->  PUT /api/AlterarEscala?id=6a9a1047bb5222b3bbed8252 ===
 { "mensagem": "Serviço alterado.", "servico": { "funcao": "Adjunto ao Oficial de Dia", ... } }
 
-=== 4/4  EXCLUIR  ->  DELETE /api/ExcluirEscala?id=6a9a0d44296f28fddd3728fb ===
+=== 4/4  EXCLUIR  ->  DELETE /api/ExcluirEscala?id=6a9a1047bb5222b3bbed8252 ===
 { "mensagem": "Serviço excluído da escala." }
 
 As quatro Azure Functions responderam corretamente.

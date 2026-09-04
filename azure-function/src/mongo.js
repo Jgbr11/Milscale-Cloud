@@ -14,7 +14,13 @@ function conectar() {
     throw new Error('MONGODB_URI nao configurada. Preencha local.settings.json ou as App Settings da Function App.');
   }
   if (!conexao) {
-    conexao = new MongoClient(uri).connect();
+    conexao = new MongoClient(uri).connect().catch(function (erro) {
+      // Descarta a promise rejeitada. Sem isto, uma falha momentanea do banco
+      // ficaria em cache e toda invocacao seguinte repetiria o mesmo erro ate
+      // a Function App ser reiniciada.
+      conexao = undefined;
+      throw erro;
+    });
   }
   return conexao;
 }
